@@ -21,11 +21,14 @@ namespace Dinner.Models
                    orderby dinner.EventDate
                    select dinner; 
         }
+     
 
         public Dinner GetDinner(int id)
         {
             return dbContext.Dinners.SingleOrDefault(d => d.DinnerID == id);
         }
+
+        
         //insert/delete methods
 
         //public void Add(Dinner dinner)

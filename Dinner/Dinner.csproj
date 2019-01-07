@@ -275,6 +275,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Dinners\Details.cshtml" />
+    <Content Include="Views\Dinners\Edit.cshtml" />
+    <Content Include="Views\Dinners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
