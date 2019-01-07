@@ -22,5 +22,7 @@ namespace Dinner.Models
                 .WithRequired(e => e.Dinner)
                 .WillCascadeOnDelete(false);
         }
+
+         
     }
 }
