@@ -28,7 +28,7 @@ namespace Dinner.Models
             return dbContext.Dinners.SingleOrDefault(d => d.DinnerID == id);
         }
 
-        
+
         //insert/delete methods
 
         //public void Add(Dinner dinner)
@@ -42,10 +42,10 @@ namespace Dinner.Models
         //    dbContext.Dinners.DeleteOnSubmit(dinner);
         //}
         ////persistence
-        //public void Save()
-        //{
-        //    dbContext.SubmitChanges();
+        public void Save()
+        {
+            dbContext.SaveChanges();
 
-        //}
+        }
     }
 }
