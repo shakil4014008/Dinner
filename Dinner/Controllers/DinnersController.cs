@@ -6,6 +6,9 @@ namespace Dinner.Controllers
 {
     public class DinnersController : Controller
     {
+        //Remaining: 
+        //post data; role, workflow
+
         DinnerRepository dr = new DinnerRepository();
 
         public ActionResult Index()
