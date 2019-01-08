@@ -10,12 +10,12 @@ namespace Dinner.Controllers
         //Remaining: 
         //post data; role, workflow
 
-        DinnerRepository dr = new DinnerRepository();
+        DinnerRepository dinnerRepository = new DinnerRepository();
 
         public ActionResult Index()
         {
             ViewBag.Welcome = "Welcome message";
-            var dinner = dr.FindAllDinners().ToList();
+            var dinner = dinnerRepository.FindAllDinners().ToList();
             if (dinner == null)
                 return View("View not found");
             else
@@ -45,7 +45,7 @@ namespace Dinner.Controllers
 
         public ActionResult Details(int? id)
         {
-            var dinner = dr.GetDinner(id ?? 0);
+            var dinner = dinnerRepository.GetDinner(id ?? 0);
              if (dinner == null)
                 return View("view not found");
              else
@@ -53,7 +53,7 @@ namespace Dinner.Controllers
         }
         public ActionResult Edit(int? id)
         {
-            var dinner = dr.GetDinner(id ?? 0);
+            var dinner = dinnerRepository.GetDinner(id ?? 0);
             if (dinner == null)
                 return View("view not found");
             else
@@ -63,25 +63,47 @@ namespace Dinner.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var dinner = dr.GetDinner(id);
-            //dinner.Title = Request.Form["Title"];
-            //dinner.Description = Request.Form["Description"];
-            //dinner.EventDate = DateTime.Parse(Request.Form["EventDate"]);
-            //dinner.Address = Request.Form["Address"];
-            //dinner.Country = Request.Form["Country"];
-            //dinner.ContactPhone = Request.Form["ContactPhone"];
-            //dr.Save();
+            var dinner = dinnerRepository.GetDinner(id);
+            
             try
             {
                 UpdateModel(dinner);
-                dr.Save();
+                dinnerRepository.Save();
                 return RedirectToAction("Details", new { id = dinner.DinnerID });
             }
             catch {
                 //foreach(var issue in dinner.get)//addModelError
                 return View(dinner);
             }
-
         }
-    }
+
+        //GET Dinner/Create
+        public ActionResult Create()
+        {
+            var dinner = new Models.Dinner()
+            {
+                EventDate = DateTime.Now.AddDays(7)
+            };
+            return View(dinner);
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(Models.Dinner dinner)
+        {
+           
+            
+            if(ModelState.IsValid) 
+            {
+                UpdateModel(dinner);
+                dinnerRepository.Add(dinner);
+                dinnerRepository.Save();
+                return RedirectToAction("Index", dinner);
+            }
+            return View(dinner);
+        }
+
+
+    
+   }
 }

@@ -23,6 +23,10 @@ namespace Dinner.Models
                 .WillCascadeOnDelete(false);
         }
 
-         
+        public void Insert(Dinner entity)
+        {
+            Dinners.Add(entity);
+        }
+
     }
 }

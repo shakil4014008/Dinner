@@ -31,11 +31,10 @@ namespace Dinner.Models
 
         //insert/delete methods
 
-        //public void Add(Dinner dinner)
-        //{
-        //    dbContext.Dinners.InsertOnSubmit(dinner);
-
-        //}
+        public void Add(Dinner dinner)
+        {
+            dbContext.Dinners.Add(dinner);
+        }
         //public void Delete(Dinner dinner)
         //{
         //    dbContext.RSVPs.DeleteAllOnSubmit(dinner.RSVPs);
